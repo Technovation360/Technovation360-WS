@@ -39,10 +39,10 @@ jobs:
         uses: cloudflare/pages-action@v1
         with:
           # Your Cloudflare API Token (must be set as a GitHub Secret)
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }} 
+          apiToken: od23MB_gbqAacJMN28_dmvzzVkJqLbhNyzVo2VIT
           # Your Cloudflare Account ID (must be set as a GitHub Secret)
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }} 
+          accountId: e50cc78a3971a1916d33443efff23a1b
           # The name you gave your project in the Cloudflare dashboard
-          projectName: your-project-name 
+          projectName: technovation360website
           # The output directory from the 'npm run build' step
           directory: dist
