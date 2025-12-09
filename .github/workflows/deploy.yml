@@ -1,0 +1,48 @@
+name: Deploy Frontend to Cloudflare Pages
+
+on:
+  # Triggers the workflow on pushes to the 'main' branch
+  push:
+    branches: ["main"]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build_and_deploy:
+    # Runs on the latest Ubuntu environment
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Step 1: Check out the repository code
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Step 2: Set up the correct Node.js environment
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Specify a modern Node.js version
+
+      # Step 3: Install dependencies
+      - name: Install Dependencies
+        # Using npm ci is faster and ensures clean state
+        run: npm ci 
+
+      # Step 4: Run the build command
+      - name: Run Vite Build
+        # This executes the 'build' script defined in your package.json (which runs 'vite build')
+        run: npm run build
+
+      # Step 5: Deploy to Cloudflare Pages
+      # Cloudflare provides a specific action for Pages deployment
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          # Your Cloudflare API Token (must be set as a GitHub Secret)
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }} 
+          # Your Cloudflare Account ID (must be set as a GitHub Secret)
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }} 
+          # The name you gave your project in the Cloudflare dashboard
+          projectName: your-project-name 
+          # The output directory from the 'npm run build' step
+          directory: dist
