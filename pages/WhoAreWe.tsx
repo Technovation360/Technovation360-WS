@@ -27,7 +27,7 @@ const WhoAreWe: React.FC = () => {
           <div className="col-12 col-lg-6">
             <Reveal>
               <h2 className="h2 fw-bold text-brand-dark mb-4 border-start border-5 border-info ps-3">Introduction</h2>
-              <div className="text-secondary fs-5">
+              <div className="text-secondary-dark fs-5">
                 <p className="mb-3">
                   TechNovation360 is a Solution Integration and Digital Transformation company dedicated to empowering small and medium businesses. 
                   We provide the essential tools and technologies needed to automate workflows, scale operations, and drive sustainable growth.

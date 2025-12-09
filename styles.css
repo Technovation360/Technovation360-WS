@@ -7,20 +7,42 @@ body {
 /* Brand Colors */
 :root {
   --brand-dark: #021024;
+  --brand-dark-rgb: 2, 16, 36;
+  
   --brand-primary: #0056b3;
+  --brand-primary-rgb: 0, 86, 179;
+  
   --brand-accent: #00A8E8;
+  --brand-accent-rgb: 0, 168, 232;
+  
   --brand-light: #F0F9FF;
+  --brand-light-rgb: 240, 249, 255;
 }
 
-.bg-brand-dark { background-color: var(--brand-dark) !important; }
-.bg-brand-primary { background-color: var(--brand-primary) !important; }
-.bg-brand-accent { background-color: var(--brand-accent) !important; }
-.bg-brand-light { background-color: var(--brand-light) !important; }
+.bg-brand-dark { 
+    --bs-bg-opacity: 1;
+    background-color: rgba(var(--brand-dark-rgb), var(--bs-bg-opacity)) !important; 
+}
+.bg-brand-primary { 
+    --bs-bg-opacity: 1;
+    background-color: rgba(var(--brand-primary-rgb), var(--bs-bg-opacity)) !important; 
+}
+.bg-brand-accent { 
+    --bs-bg-opacity: 1;
+    background-color: rgba(var(--brand-accent-rgb), var(--bs-bg-opacity)) !important; 
+}
+.bg-brand-light { 
+    --bs-bg-opacity: 1;
+    background-color: rgba(var(--brand-light-rgb), var(--bs-bg-opacity)) !important; 
+}
 
 .text-brand-dark { color: var(--brand-dark) !important; }
 .text-brand-primary { color: var(--brand-primary) !important; }
 .text-brand-accent { color: var(--brand-accent) !important; }
 .text-brand-light { color: var(--brand-light) !important; }
+
+/* Darker secondary text for better contrast */
+.text-secondary-dark { color: #4b5563 !important; }
 
 .text-blue-100 { color: #dbeafe !important; }
 .text-blue-200 { color: #bfdbfe !important; }
@@ -138,6 +160,31 @@ body {
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+/* Animations (Reveal) */
+.reveal-base { transition: all 1s cubic-bezier(0.17, 0.55, 0.55, 1); }
+.reveal-hidden-fade-up { opacity: 0; transform: translateY(3rem); }
+.reveal-visible-fade-up { opacity: 1; transform: translateY(0); }
+.reveal-hidden-zoom-in { opacity: 0; transform: scale(0.95); }
+.reveal-visible-zoom-in { opacity: 1; transform: scale(1); }
+.reveal-hidden-fade-in { opacity: 0; }
+.reveal-visible-fade-in { opacity: 1; }
+
+/* Page Load Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 20px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.page-transition {
+    animation: fadeInUp 0.6s ease-out both;
 }
 
 /* Custom Buttons */

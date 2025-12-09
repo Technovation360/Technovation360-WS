@@ -139,7 +139,7 @@ const Home: React.FC = () => {
           <div className="mx-auto" style={{ maxWidth: '900px' }}>
             <Reveal>
                 <h2 className="display-6 fw-bold text-brand-dark mb-4">Your Trusted Technology Partner</h2>
-                <p className="lead text-secondary mb-5">
+                <p className="lead text-secondary-dark mb-5">
                 TechNovation360 is dedicated to empowering businesses with the tools they need to automate, scale, and grow. 
                 We bridge the gap between traditional challenges and modern digital ecosystems.
                 </p>

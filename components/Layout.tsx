@@ -156,7 +156,9 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       <div style={{ height: '120px' }}></div>
 
       <main className="flex-grow-1">
-        {children}
+        <div key={location.pathname} className="page-transition h-100">
+           {children}
+        </div>
       </main>
 
       {/* Footer */}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter as Router, Routes, Route, ScrollRestoration } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import WhoAreWe from './pages/WhoAreWe';
@@ -13,13 +13,10 @@ import SinglePost from './pages/SinglePost';
 import CaseStudies from './pages/CaseStudies';
 
 function ScrollToTop() {
-  const { pathname } = React.useMemo(() => new URL(window.location.href), [window.location.href]);
+  const { pathname } = useLocation();
 
   React.useEffect(() => {
-    // Only scroll to top if not navigating to a hash on the same page
-    if (!window.location.hash) {
-      window.scrollTo(0, 0);
-    }
+    window.scrollTo(0, 0);
   }, [pathname]);
 
   return null;
@@ -28,7 +25,7 @@ function ScrollToTop() {
 const App: React.FC = () => {
   return (
     <Router>
-      <ScrollToTop /> {/* Manual scroll handling for HashRouter */}
+      <ScrollToTop />
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
