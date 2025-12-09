@@ -30,16 +30,16 @@ const Solutions: React.FC = () => {
 
   return (
     <div>
-      {/* Hero Section with Static Grid */}
-      <div className="bg-brand-dark py-16 text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-12">
+      {/* Hero Section */}
+      <div className="bg-brand-dark py-5 text-white position-relative overflow-hidden">
+        <div className="hero-bg-pattern"></div>
+        <div className="container position-relative z-1 py-4">
+          <div className="text-center mb-5">
             <Reveal>
-              <h1 className="text-4xl md:text-5xl font-extrabold mb-4">Our Solutions</h1>
+              <h1 className="display-4 fw-bold mb-3">Our Solutions</h1>
             </Reveal>
             <Reveal delay={200}>
-              <p className="text-xl text-blue-200 max-w-2xl mx-auto">
+              <p className="lead text-blue-200 mx-auto" style={{ maxWidth: '700px' }}>
                 Discover our comprehensive range of services designed to elevate your business.
                 Select a solution below to learn more.
               </p>
@@ -47,18 +47,19 @@ const Solutions: React.FC = () => {
           </div>
 
           <Reveal delay={300}>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
+            <div className="row g-3 justify-content-center">
               {SOLUTIONS_DATA.map((item) => {
                 const Icon = ICON_MAP[item.iconName] || ArrowRight;
                 return (
-                  <button
-                    key={item.slug}
-                    onClick={() => scrollToSection(item.slug)}
-                    className="bg-white/10 hover:bg-brand-accent backdrop-blur-sm border border-white/20 p-4 rounded-xl text-center transition-all duration-300 hover:-translate-y-1 flex flex-col items-center gap-3 group"
-                  >
-                    <Icon size={24} className="text-brand-accent group-hover:text-white" />
-                    <span className="font-semibold text-sm md:text-base leading-tight">{item.title}</span>
-                  </button>
+                  <div className="col-6 col-md-4 col-lg-3" key={item.slug}>
+                      <button
+                        onClick={() => scrollToSection(item.slug)}
+                        className="btn btn-outline-light w-100 h-100 p-4 rounded-4 d-flex flex-column align-items-center gap-2 hover-bg-brand-accent transition-all border-opacity-25"
+                      >
+                        <Icon size={24} className="text-brand-accent mb-1" />
+                        <span className="fw-semibold small">{item.title}</span>
+                      </button>
+                  </div>
                 );
               })}
             </div>
@@ -66,62 +67,66 @@ const Solutions: React.FC = () => {
         </div>
       </div>
 
-      {/* Consolidated Content Sections */}
-      <div className="bg-gray-50">
+      {/* Content Sections */}
+      <div className="bg-white">
         {SOLUTIONS_DATA.map((item, idx) => {
           const Icon = ICON_MAP[item.iconName] || ArrowRight;
           const isEven = idx % 2 === 0;
           
           return (
-            <div key={item.slug} id={item.slug} className={`py-20 border-b border-gray-200 ${isEven ? 'bg-white' : 'bg-gray-50'}`}>
-              <div className="container mx-auto px-4">
-                <div className={`flex flex-col lg:flex-row gap-12 items-center ${!isEven ? 'lg:flex-row-reverse' : ''}`}>
+            <div key={item.slug} id={item.slug} className={`py-5 border-bottom border-light ${isEven ? 'bg-white' : 'bg-brand-light'}`}>
+              <div className="container py-4">
+                <div className={`row g-5 align-items-center ${!isEven ? 'flex-lg-row-reverse' : ''}`}>
                   
                   {/* Content Side */}
-                  <div className="flex-1 space-y-6">
-                    <Reveal>
-                      <div className="flex items-center gap-3 mb-2">
-                        <div className="bg-brand-light p-3 rounded-full text-brand-primary">
-                          <Icon size={28} />
-                        </div>
-                        <h2 className="text-3xl font-bold text-brand-dark">{item.title}</h2>
-                      </div>
-                      {item.subtitle && <p className="text-xl text-brand-accent font-medium">{item.subtitle}</p>}
-                    </Reveal>
-                    
-                    <Reveal delay={100}>
-                      <p className="text-gray-600 text-lg leading-relaxed">
-                        {item.description}
-                      </p>
-                    </Reveal>
+                  <div className="col-lg-6">
+                    <div className="d-flex flex-column gap-3">
+                        <Reveal>
+                            <div className="d-flex align-items-center gap-3 mb-2">
+                                <div className="bg-white p-2 rounded-circle text-brand-primary shadow-sm">
+                                <Icon size={28} />
+                                </div>
+                                <h2 className="h2 fw-bold text-brand-dark mb-0">{item.title}</h2>
+                            </div>
+                            {item.subtitle && <p className="h5 text-brand-accent fw-medium">{item.subtitle}</p>}
+                        </Reveal>
+                        
+                        <Reveal delay={100}>
+                        <p className="text-secondary fs-5 lh-base">
+                            {item.description}
+                        </p>
+                        </Reveal>
 
-                    <Reveal delay={200}>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
-                        {item.features?.map((feature, fIdx) => (
-                          <div key={fIdx} className="flex items-start gap-2">
-                            <CheckCircle size={18} className="text-green-500 mt-1 flex-shrink-0" />
-                            <span className="text-gray-700 text-sm font-medium">{feature}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </Reveal>
+                        <Reveal delay={200}>
+                        <div className="row g-2 mt-2">
+                            {item.features?.map((feature, fIdx) => (
+                            <div key={fIdx} className="col-sm-6">
+                                <div className="d-flex align-items-start gap-2">
+                                    <CheckCircle size={18} className="text-success mt-1 flex-shrink-0" />
+                                    <span className="text-dark small fw-medium">{feature}</span>
+                                </div>
+                            </div>
+                            ))}
+                        </div>
+                        </Reveal>
+                    </div>
                   </div>
 
                   {/* Media Side */}
-                  <div className="flex-1 w-full">
+                  <div className="col-lg-6">
                     <Reveal delay={300} variant="zoom-in">
                        {item.lottieUrl ? (
-                         <div className="w-full aspect-video rounded-xl overflow-hidden shadow-xl bg-white border border-gray-100 relative">
+                         <div className="ratio ratio-16x9 rounded-4 overflow-hidden shadow-lg border border-light bg-white">
                             <iframe 
                               src={item.lottieUrl} 
-                              className="w-full h-full border-0 absolute inset-0"
+                              className="border-0"
                               title={`${item.title} Animation`}
                               loading="lazy"
                             ></iframe>
                          </div>
                        ) : (
-                         <div className="w-full aspect-video rounded-xl overflow-hidden shadow-xl">
-                            <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
+                         <div className="ratio ratio-16x9 rounded-4 overflow-hidden shadow-lg">
+                            <img src={item.image} alt={item.title} className="object-cover" />
                          </div>
                        )}
                     </Reveal>
@@ -135,11 +140,11 @@ const Solutions: React.FC = () => {
       </div>
 
       {/* Final CTA */}
-      <div className="bg-brand-dark py-16 text-center">
-         <div className="container mx-auto px-4">
+      <div className="bg-brand-dark py-5 text-center">
+         <div className="container">
             <Reveal>
-              <h2 className="text-3xl font-bold text-white mb-6">Need a custom solution?</h2>
-              <div className="max-w-xl mx-auto">
+              <h2 className="display-5 fw-bold text-white mb-4">Need a custom solution?</h2>
+              <div className="mx-auto" style={{ maxWidth: '600px' }}>
                  <ContactForm />
               </div>
             </Reveal>

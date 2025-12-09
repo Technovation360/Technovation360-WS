@@ -8,82 +8,88 @@ const WhyChooseUs: React.FC = () => {
   return (
     <div>
        {/* Header */}
-       <div className="bg-brand-dark py-16 text-center text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
-        <div className="container mx-auto px-4 relative z-10">
+       <div className="bg-brand-dark py-5 text-center text-white position-relative overflow-hidden">
+        <div className="hero-bg-pattern"></div>
+        <div className="container position-relative z-1 py-4">
           <Reveal>
-            <h1 className="text-4xl font-extrabold mb-4">Why Choose TechNovation360?</h1>
+            <h1 className="display-4 fw-bold mb-3">Why Choose TechNovation360?</h1>
           </Reveal>
           <Reveal delay={200}>
-            <p className="text-xl text-blue-200">Excellence in every solution we deliver.</p>
+            <p className="lead text-blue-200">Excellence in every solution we deliver.</p>
           </Reveal>
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-16">
+      <div className="container py-5">
         
         {/* Core Differentiators */}
-        <section className="mb-20">
+        <section className="mb-5 py-4">
           <Reveal>
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-brand-dark">Our Core Differentiators</h2>
-              <div className="w-16 h-1 bg-brand-accent mx-auto mt-4 rounded-full"></div>
+            <div className="text-center mb-5">
+              <h2 className="h2 fw-bold text-brand-dark">Our Core Differentiators</h2>
+              <div className="bg-brand-accent mx-auto mt-3 rounded-pill" style={{ width: '60px', height: '4px' }}></div>
             </div>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+          <div className="row g-4 justify-content-center">
              {WHY_CHOOSE_US_POINTS.map((point, index) => (
-               <Reveal key={index} delay={index * 100}>
-                 <div className="flex gap-4 bg-white p-6 rounded-xl shadow-md border-l-4 border-brand-primary hover:translate-x-1 transition-transform h-full">
-                   <div className="flex-shrink-0">
-                      <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-brand-primary font-bold">
-                        {index + 1}
-                      </div>
-                   </div>
-                   <p className="text-gray-700 font-medium leading-relaxed">{point}</p>
-                 </div>
-               </Reveal>
+               <div className="col-12 col-md-6" key={index}>
+                   <Reveal delay={index * 100}>
+                    <div className="d-flex gap-3 bg-white p-4 rounded-4 shadow-sm border-start border-4 border-primary h-100 hover-translate-up transition-all">
+                    <div className="flex-shrink-0">
+                        <div className="bg-primary bg-opacity-10 text-brand-primary rounded-circle d-flex align-items-center justify-content-center fw-bold" style={{ width: '40px', height: '40px' }}>
+                            {index + 1}
+                        </div>
+                    </div>
+                    <p className="text-secondary fw-medium mb-0">{point}</p>
+                    </div>
+                   </Reveal>
+               </div>
              ))}
           </div>
         </section>
 
         {/* Industries */}
-        <section className="bg-gray-50 py-16 rounded-3xl">
+        <section className="bg-white py-5 px-3 rounded-5 shadow-sm my-5">
           <Reveal>
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-brand-dark">Industries Experienced In</h2>
-              <p className="text-gray-600 mt-2">Tailored solutions for diverse sectors.</p>
+            <div className="text-center mb-5">
+              <h2 className="h2 fw-bold text-brand-dark">Industries Experienced In</h2>
+              <p className="text-secondary mt-2">Tailored solutions for diverse sectors.</p>
             </div>
           </Reveal>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-6xl mx-auto px-4">
-             {INDUSTRIES.map((ind, idx) => {
-               const Icon = ICON_MAP[ind.iconName] || Briefcase;
-               return (
-                 <Reveal key={idx} delay={idx * 100}>
-                   <div className="bg-white p-6 rounded-xl shadow hover:shadow-lg transition-all text-center group cursor-default h-full">
-                      <div className="w-16 h-16 bg-gray-100 rounded-full mx-auto flex items-center justify-center text-gray-500 mb-4 group-hover:bg-brand-accent group-hover:text-white transition-colors">
-                        <Icon size={32} />
-                      </div>
-                      <h3 className="font-bold text-gray-800 group-hover:text-brand-primary transition-colors">{ind.name}</h3>
-                   </div>
-                 </Reveal>
-               );
-             })}
+          <div className="container">
+            <div className="row g-4 justify-content-center">
+                {INDUSTRIES.map((ind, idx) => {
+                const Icon = ICON_MAP[ind.iconName] || Briefcase;
+                return (
+                    <div className="col-6 col-md-4 col-lg-2" key={idx}>
+                        <Reveal delay={idx * 100}>
+                            <div className="p-4 rounded-4 bg-light text-center h-100 hover-bg-brand-primary transition-all group">
+                                <div className="bg-white rounded-circle mx-auto d-flex align-items-center justify-content-center text-secondary mb-3 shadow-sm" style={{ width: '64px', height: '64px' }}>
+                                    <Icon size={32} />
+                                </div>
+                                <h3 className="h6 fw-bold text-dark mb-0">{ind.name}</h3>
+                            </div>
+                        </Reveal>
+                    </div>
+                );
+                })}
+            </div>
           </div>
         </section>
 
         {/* Call to Action */}
-        <section className="mt-20 text-center">
+        <section className="mt-5 text-center">
            <Reveal delay={200}>
-             <div className="bg-gradient-to-r from-brand-dark to-blue-800 rounded-2xl p-10 md:p-16 text-white shadow-2xl relative overflow-hidden">
-               <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full -mr-20 -mt-20"></div>
-               <div className="relative z-10">
-                 <h2 className="text-3xl font-bold mb-4">Partner with Us for Success</h2>
-                 <p className="text-lg text-blue-100 mb-8 max-w-2xl mx-auto">
+             <div className="bg-brand-dark rounded-4 p-5 text-white shadow-lg position-relative overflow-hidden mx-auto" style={{ maxWidth: '900px' }}>
+               <div className="position-absolute top-0 end-0 bg-white opacity-10 rounded-circle" style={{ width: '200px', height: '200px', transform: 'translate(30%, -30%)' }}></div>
+               <div className="position-relative z-1">
+                 <h2 className="h2 fw-bold mb-3">Partner with Us for Success</h2>
+                 <p className="lead text-blue-100 mb-4 mx-auto" style={{ maxWidth: '600px' }}>
                    Experience the difference of working with a partner who truly understands your business goals.
                  </p>
-                 <Link to="/contact" className="inline-block bg-brand-accent hover:bg-white hover:text-brand-accent text-white font-bold py-3 px-8 rounded-full transition-all shadow-lg">
+                 <Link to="/contact" className="btn btn-brand-accent rounded-pill px-5 py-3 fw-bold shadow">
                    Schedule Your Consultation
                  </Link>
                </div>

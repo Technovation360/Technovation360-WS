@@ -22,12 +22,11 @@ export const Reveal: React.FC<RevealProps> = ({
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         setIsVisible(true);
-        // Disconnect after triggering once for "enter only" animation
         if (ref.current) observer.unobserve(ref.current);
       }
     }, { 
-      threshold: 0.1, // Trigger when 10% of the element is visible
-      rootMargin: "0px 0px -50px 0px" // Trigger slightly before the bottom of the viewport
+      threshold: 0.1, 
+      rootMargin: "0px 0px -50px 0px"
     });
 
     if (ref.current) {
@@ -35,21 +34,23 @@ export const Reveal: React.FC<RevealProps> = ({
     }
 
     return () => {
-      if (ref.current) observer.disconnect(); // Clean up on unmount
+      if (ref.current) observer.disconnect();
     };
   }, []);
 
   const getVariantClasses = () => {
-    if (isVisible) return 'opacity-100 translate-y-0 scale-100';
-    
-    switch (variant) {
-      case 'zoom-in':
-        return 'opacity-0 scale-95';
-      case 'fade-in':
-        return 'opacity-0';
-      case 'fade-up':
-      default:
-        return 'opacity-0 translate-y-12';
+    if (isVisible) {
+      switch (variant) {
+        case 'zoom-in': return 'reveal-visible-zoom-in';
+        case 'fade-in': return 'reveal-visible-fade-in';
+        case 'fade-up': default: return 'reveal-visible-fade-up';
+      }
+    } else {
+      switch (variant) {
+        case 'zoom-in': return 'reveal-hidden-zoom-in';
+        case 'fade-in': return 'reveal-hidden-fade-in';
+        case 'fade-up': default: return 'reveal-hidden-fade-up';
+      }
     }
   };
 
@@ -57,7 +58,7 @@ export const Reveal: React.FC<RevealProps> = ({
     <div 
       ref={ref} 
       style={{ width, transitionDelay: `${delay}ms` }}
-      className={`transform transition-all duration-1000 cubic-bezier(0.17, 0.55, 0.55, 1) ${getVariantClasses()} ${className}`}
+      className={`reveal-base ${getVariantClasses()} ${className}`}
     >
       {children}
     </div>

@@ -36,7 +36,7 @@ const SinglePost: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="min-vh-100 d-flex align-items-center justify-content-center bg-brand-light">
          <Loader2 className="animate-spin text-brand-primary" size={48} />
       </div>
     );
@@ -44,9 +44,9 @@ const SinglePost: React.FC = () => {
 
   if (error || !post) {
     return (
-      <div className="container mx-auto py-32 text-center">
-         <h1 className="text-4xl font-bold text-gray-800 mb-4">Article Not Found</h1>
-         <Link to="/blog" className="text-brand-primary hover:underline">Back to Blog</Link>
+      <div className="container py-5 text-center mt-5">
+         <h1 className="display-4 fw-bold text-dark mb-4">Article Not Found</h1>
+         <Link to="/blog" className="text-brand-primary fw-bold text-decoration-none">Back to Blog</Link>
       </div>
     );
   }
@@ -54,58 +54,59 @@ const SinglePost: React.FC = () => {
   const categories = Array.from(new Set(recentPosts.map(p => p.category)));
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="bg-brand-light min-vh-100">
       
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+      <div className="container py-5">
+        <div className="row g-5">
           
           {/* Main Content Area */}
-          <div className="lg:col-span-2">
+          <div className="col-lg-8">
             <Reveal>
-              <article className="bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-gray-100">
+              <article className="bg-white p-4 p-md-5 rounded-4 shadow-sm border border-light mb-5">
                  {/* Post Meta Header */}
-                 <div className="mb-8">
-                   <Link to="/blog" className="inline-flex items-center gap-1 text-brand-primary font-medium text-sm mb-6 hover:underline">
+                 <div className="mb-5">
+                   <Link to="/blog" className="d-inline-flex align-items-center gap-1 text-brand-primary fw-bold text-decoration-none small mb-4">
                      <ArrowLeft size={16} /> Back to Insights
                    </Link>
-                   <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-4">
-                      <span className="bg-blue-100 text-brand-primary px-3 py-1 rounded-full font-semibold text-xs uppercase tracking-wide">
+                   <div className="d-flex flex-wrap align-items-center gap-3 text-muted small mb-3">
+                      <span className="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-2 text-uppercase ls-1">
                         {post.category}
                       </span>
-                      <span className="flex items-center gap-1"><Calendar size={14}/> {post.date}</span>
-                      <span className="flex items-center gap-1"><User size={14}/> {post.author}</span>
+                      <span className="d-flex align-items-center gap-1"><Calendar size={14}/> {post.date}</span>
+                      <span className="d-flex align-items-center gap-1"><User size={14}/> {post.author}</span>
                    </div>
-                   <h1 className="text-3xl md:text-5xl font-extrabold text-brand-dark leading-tight mb-8" dangerouslySetInnerHTML={{ __html: post.title }} />
+                   <h1 className="display-5 fw-bold text-brand-dark mb-4" dangerouslySetInnerHTML={{ __html: post.title }} />
                    <img 
                      src={post.image} 
                      alt={post.title} 
-                     className="w-full h-80 md:h-96 object-cover rounded-xl mb-8 shadow-md"
+                     className="w-100 rounded-4 shadow-sm object-cover"
+                     style={{ height: '400px' }}
                    />
                  </div>
 
                  {/* Post Content */}
                  <div 
-                   className="prose prose-lg text-gray-700 max-w-none focus:outline-none"
+                   className="post-content text-secondary fs-5 lh-base"
                    dangerouslySetInnerHTML={{ __html: post.content }}
                  />
 
                  {/* Tags & Share */}
-                 <div className="mt-12 pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-6">
-                    <div className="flex items-center gap-2">
+                 <div className="mt-5 pt-4 border-top border-light d-flex flex-column flex-md-row justify-content-between align-items-center gap-4">
+                    <div className="d-flex align-items-center gap-2">
                       <Tag size={18} className="text-brand-accent" />
-                      <div className="flex gap-2">
+                      <div className="d-flex gap-2">
                         {post.tags.map(tag => (
-                          <span key={tag} className="bg-gray-100 hover:bg-gray-200 text-gray-600 text-sm px-3 py-1 rounded transition-colors cursor-pointer">
+                          <span key={tag} className="badge bg-light text-secondary fw-normal px-2 py-1">
                             #{tag}
                           </span>
                         ))}
                       </div>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-gray-500 font-medium flex items-center gap-1"><Share2 size={16}/> Share:</span>
-                      <button className="bg-blue-600 text-white p-2 rounded-full hover:opacity-80 transition-opacity"><Facebook size={16}/></button>
-                      <button className="bg-sky-500 text-white p-2 rounded-full hover:opacity-80 transition-opacity"><Twitter size={16}/></button>
-                      <button className="bg-blue-700 text-white p-2 rounded-full hover:opacity-80 transition-opacity"><Linkedin size={16}/></button>
+                    <div className="d-flex align-items-center gap-2">
+                      <span className="text-muted fw-bold small d-flex align-items-center gap-1"><Share2 size={16}/> Share:</span>
+                      <button className="btn btn-sm btn-primary rounded-circle p-2"><Facebook size={14}/></button>
+                      <button className="btn btn-sm btn-info text-white rounded-circle p-2"><Twitter size={14}/></button>
+                      <button className="btn btn-sm btn-primary rounded-circle p-2"><Linkedin size={14}/></button>
                     </div>
                  </div>
               </article>
@@ -113,13 +114,13 @@ const SinglePost: React.FC = () => {
 
             {/* Author Box */}
             <Reveal delay={200}>
-              <div className="mt-8 bg-white p-8 rounded-xl shadow-sm border border-gray-100 flex items-center gap-6">
-                 <div className="w-16 h-16 bg-brand-primary text-white rounded-full flex items-center justify-center text-2xl font-bold flex-shrink-0">
+              <div className="bg-white p-4 rounded-4 shadow-sm border border-light d-flex align-items-center gap-4">
+                 <div className="flex-shrink-0 bg-brand-primary text-white rounded-circle d-flex align-items-center justify-content-center fs-4 fw-bold" style={{ width: '64px', height: '64px' }}>
                    {post.author.charAt(0)}
                  </div>
                  <div>
-                   <h4 className="text-lg font-bold text-brand-dark">About {post.author}</h4>
-                   <p className="text-gray-600 text-sm mt-1">
+                   <h4 className="h5 fw-bold text-brand-dark mb-1">About {post.author}</h4>
+                   <p className="text-secondary small mb-0">
                      Technology enthusiast and digital transformation expert dedicated to helping businesses modernize their operations.
                    </p>
                  </div>
@@ -128,67 +129,69 @@ const SinglePost: React.FC = () => {
           </div>
 
           {/* Sidebar Area */}
-          <div className="lg:col-span-1 space-y-8">
-             {/* Search Widget */}
-             <Reveal delay={100}>
-               <div className="bg-white p-6 rounded-xl shadow-md border border-gray-100">
-                 <h3 className="font-bold text-lg text-brand-dark mb-4 pb-2 border-b-2 border-brand-accent inline-block">Search</h3>
-                 <div className="relative">
-                   <input 
-                     type="text" 
-                     placeholder="Search..." 
-                     className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-brand-primary outline-none"
-                   />
-                   <Search className="absolute left-3 top-3.5 text-gray-400" size={18} />
-                 </div>
-               </div>
-             </Reveal>
+          <div className="col-lg-4">
+             <div className="d-flex flex-column gap-4">
+                {/* Search Widget */}
+                <Reveal delay={100}>
+                <div className="bg-white p-4 rounded-4 shadow-sm border border-light">
+                    <h3 className="h5 fw-bold text-brand-dark mb-3 pb-2 border-bottom border-2 border-info d-inline-block">Search</h3>
+                    <div className="position-relative">
+                    <input 
+                        type="text" 
+                        placeholder="Search..." 
+                        className="form-control form-control-lg fs-6 ps-5"
+                    />
+                    <Search className="position-absolute top-50 start-0 translate-middle-y ms-3 text-muted" size={18} />
+                    </div>
+                </div>
+                </Reveal>
 
-             {/* Recent Posts */}
-             <Reveal delay={200}>
-               <div className="bg-white p-6 rounded-xl shadow-md border border-gray-100">
-                 <h3 className="font-bold text-lg text-brand-dark mb-6 pb-2 border-b-2 border-brand-accent inline-block">Latest Insights</h3>
-                 <div className="space-y-6">
-                   {recentPosts.filter(p => p.id !== post.id).slice(0, 3).map(p => (
-                     <div key={p.id} className="flex gap-4 group cursor-pointer">
-                       <div className="w-20 h-20 flex-shrink-0 overflow-hidden rounded-lg">
-                         <img src={p.image} alt={p.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform" />
-                       </div>
-                       <div>
-                         <h4 className="font-bold text-brand-dark text-sm leading-tight mb-1 group-hover:text-brand-primary transition-colors">
-                           <Link to={`/blog/${p.slug}`} dangerouslySetInnerHTML={{ __html: p.title }} />
-                         </h4>
-                         <span className="text-xs text-gray-400">{p.date}</span>
-                       </div>
-                     </div>
-                   ))}
-                 </div>
-               </div>
-             </Reveal>
+                {/* Recent Posts */}
+                <Reveal delay={200}>
+                <div className="bg-white p-4 rounded-4 shadow-sm border border-light">
+                    <h3 className="h5 fw-bold text-brand-dark mb-4 pb-2 border-bottom border-2 border-info d-inline-block">Latest Insights</h3>
+                    <div className="d-flex flex-column gap-3">
+                    {recentPosts.filter(p => p.id !== post.id).slice(0, 3).map(p => (
+                        <div key={p.id} className="d-flex gap-3">
+                        <div className="flex-shrink-0" style={{ width: '70px', height: '70px' }}>
+                            <img src={p.image} alt={p.title} className="w-100 h-100 object-cover rounded-3" />
+                        </div>
+                        <div>
+                            <h4 className="h6 fw-bold mb-1">
+                            <Link to={`/blog/${p.slug}`} className="text-decoration-none text-dark hover-text-primary" dangerouslySetInnerHTML={{ __html: p.title }} />
+                            </h4>
+                            <span className="small text-muted">{p.date}</span>
+                        </div>
+                        </div>
+                    ))}
+                    </div>
+                </div>
+                </Reveal>
 
-             {/* Categories */}
-             <Reveal delay={300}>
-               <div className="bg-white p-6 rounded-xl shadow-md border border-gray-100">
-                 <h3 className="font-bold text-lg text-brand-dark mb-4 pb-2 border-b-2 border-brand-accent inline-block">Categories</h3>
-                 <ul className="space-y-3">
-                   {categories.map((cat, idx) => (
-                     <li key={idx}>
-                       <Link to="/blog" className="flex items-center justify-between w-full text-gray-600 hover:text-brand-primary transition-colors border-b border-gray-50 pb-2">
-                         <span>{cat}</span>
-                         <span className="text-gray-400 text-xs">({recentPosts.filter(p => p.category === cat).length})</span>
-                       </Link>
-                     </li>
-                   ))}
-                 </ul>
-               </div>
-             </Reveal>
+                {/* Categories */}
+                <Reveal delay={300}>
+                <div className="bg-white p-4 rounded-4 shadow-sm border border-light">
+                    <h3 className="h5 fw-bold text-brand-dark mb-3 pb-2 border-bottom border-2 border-info d-inline-block">Categories</h3>
+                    <ul className="list-unstyled mb-0 d-flex flex-column gap-2">
+                    {categories.map((cat, idx) => (
+                        <li key={idx}>
+                        <Link to="/blog" className="text-decoration-none text-secondary d-flex justify-content-between align-items-center py-1 border-bottom border-light hover-text-primary">
+                            <span>{cat}</span>
+                            <span className="small text-muted">({recentPosts.filter(p => p.category === cat).length})</span>
+                        </Link>
+                        </li>
+                    ))}
+                    </ul>
+                </div>
+                </Reveal>
 
-             {/* CTA Widget */}
-             <Reveal delay={400}>
-               <div className="sticky top-24">
-                  <ContactForm />
-               </div>
-             </Reveal>
+                {/* CTA Widget */}
+                <Reveal delay={400}>
+                <div className="sticky-top" style={{ top: '100px' }}>
+                    <ContactForm />
+                </div>
+                </Reveal>
+             </div>
           </div>
 
         </div>

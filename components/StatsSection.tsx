@@ -27,7 +27,6 @@ const StatItem: React.FC<StatProps> = ({ end, label, suffix = '', icon: Icon }) 
   useEffect(() => {
     if (isVisible) {
       let start = 0;
-      // Duration of animation in ms
       const duration = 2000;
       const totalFrames = duration / 16;
       const increment = end / totalFrames;
@@ -47,14 +46,14 @@ const StatItem: React.FC<StatProps> = ({ end, label, suffix = '', icon: Icon }) 
   }, [isVisible, end]);
 
   return (
-    <div ref={ref} className="text-center p-6 rounded-xl group hover:-translate-y-1 transition-transform duration-300">
-      <div className="w-16 h-16 mx-auto bg-white/10 rounded-full flex items-center justify-center mb-4 text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-colors duration-300 backdrop-blur-sm border border-white/10 shadow-lg">
+    <div ref={ref} className="text-center p-4 rounded-4 hover-translate-up transition-all h-100">
+      <div className="d-inline-flex align-items-center justify-content-center bg-white bg-opacity-10 text-brand-accent rounded-circle mb-3 shadow border border-white border-opacity-10" style={{ width: '64px', height: '64px' }}>
         <Icon size={32} />
       </div>
-      <div className="text-4xl md:text-5xl font-extrabold text-white mb-2 tracking-tight">
+      <div className="fw-bolder text-white mb-2 display-5">
         {count}{suffix}
       </div>
-      <div className="text-blue-200 font-medium uppercase tracking-wider text-sm">
+      <div className="text-blue-200 fw-bold text-uppercase small ls-1">
         {label}
       </div>
     </div>
@@ -68,14 +67,15 @@ const StatsSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-16 gradient-bg relative overflow-hidden border-y border-white/10">
-      {/* Background patterns */}
-      <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+    <section className="py-5 gradient-bg position-relative overflow-hidden border-top border-bottom border-white border-opacity-10">
+      <div className="hero-bg-pattern"></div>
       
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-2 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+      <div className="container position-relative z-1">
+        <div className="row g-4 justify-content-center">
           {stats.map((stat, idx) => (
-             <StatItem key={idx} {...stat} />
+             <div className="col-6 col-md-4" key={idx}>
+               <StatItem {...stat} />
+             </div>
           ))}
         </div>
       </div>

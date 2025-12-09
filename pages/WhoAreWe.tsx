@@ -8,127 +8,134 @@ const WhoAreWe: React.FC = () => {
   return (
     <div>
       {/* Header */}
-      <div className="bg-brand-dark py-16 text-center text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
-        <div className="container mx-auto px-4 relative z-10">
+      <div className="bg-brand-dark py-5 text-center text-white position-relative overflow-hidden">
+        <div className="hero-bg-pattern"></div>
+        <div className="container position-relative z-1 py-4">
           <Reveal>
-            <h1 className="text-4xl font-extrabold mb-4">Who Are We</h1>
+            <h1 className="display-4 fw-bold mb-3">Who Are We</h1>
           </Reveal>
           <Reveal delay={200}>
-            <p className="text-xl text-blue-200">Our Identity, Mission, and Vision</p>
+            <p className="lead text-blue-200">Our Identity, Mission, and Vision</p>
           </Reveal>
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-16 space-y-20">
+      <div className="container py-5">
         
         {/* Introduction */}
-        <section className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <Reveal>
-            <div>
-              <h2 className="text-3xl font-bold text-brand-dark mb-6 border-l-8 border-brand-accent pl-4">Introduction</h2>
-              <div className="prose prose-lg text-gray-600">
-                <p className="mb-4">
+        <section className="row align-items-center g-5 mb-5 py-4">
+          <div className="col-12 col-lg-6">
+            <Reveal>
+              <h2 className="h2 fw-bold text-brand-dark mb-4 border-start border-5 border-info ps-3">Introduction</h2>
+              <div className="text-secondary fs-5">
+                <p className="mb-3">
                   TechNovation360 is a Solution Integration and Digital Transformation company dedicated to empowering small and medium businesses. 
                   We provide the essential tools and technologies needed to automate workflows, scale operations, and drive sustainable growth.
                 </p>
-                <p className="mb-4">
+                <p className="mb-3">
                   We bridge the gap between traditional business challenges and modern digital ecosystems. Our end-to-end solutions span cloud infrastructure, 
                   collaboration, automation, security, and digital presence.
                 </p>
-                <p className="font-semibold text-brand-primary">
+                <p className="fw-bold text-brand-primary">
                   "We don't want to be just another technology provider; we aim and strive to be your trusted technology partner."
                 </p>
               </div>
-            </div>
-          </Reveal>
-          <Reveal delay={200}>
-            <div className="relative">
-               <div className="rounded-2xl shadow-xl overflow-hidden bg-white">
-                 <LottieAnimation 
-                    url="https://assets5.lottiefiles.com/packages/lf20_5w2kxo8s.json"
-                    fallbackImage="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800"
-                    className="w-full h-auto"
-                 />
-               </div>
-               <div className="absolute -bottom-6 -right-6 bg-brand-primary text-white p-6 rounded-xl shadow-lg hidden md:block">
-                 <p className="font-bold text-2xl">360°</p>
-                 <p className="text-sm">Digital Solutions</p>
-               </div>
-            </div>
-          </Reveal>
+            </Reveal>
+          </div>
+          <div className="col-12 col-lg-6">
+            <Reveal delay={200}>
+                <div className="position-relative">
+                   <div className="rounded-4 shadow-lg overflow-hidden bg-white">
+                     <LottieAnimation 
+                        url="https://assets5.lottiefiles.com/packages/lf20_5w2kxo8s.json"
+                        fallbackImage="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800"
+                        className="w-100 h-auto"
+                     />
+                   </div>
+                   <div className="position-absolute bottom-0 end-0 bg-brand-primary text-white p-4 rounded-3 shadow-lg d-none d-md-block m-n4">
+                     <p className="fw-bold fs-3 mb-0">360°</p>
+                     <p className="small mb-0">Digital Solutions</p>
+                   </div>
+                </div>
+            </Reveal>
+          </div>
         </section>
 
         {/* Mission & Vision */}
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <Reveal delay={100}>
-            <div className="bg-blue-50 rounded-2xl p-10 border-t-4 border-brand-primary shadow-sm hover:shadow-md transition-shadow h-full">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="bg-brand-primary text-white p-3 rounded-full">
-                  <Target size={32} />
+        <section className="row g-4 mb-5 py-4">
+          <div className="col-12 col-md-6">
+            <Reveal delay={100}>
+                <div className="bg-white rounded-4 p-5 border-top border-4 border-primary shadow-sm h-100">
+                  <div className="d-flex align-items-center gap-3 mb-4">
+                    <div className="bg-brand-primary text-white p-2 rounded-circle">
+                      <Target size={32} />
+                    </div>
+                    <h2 className="h2 fw-bold text-brand-dark mb-0">Our Mission</h2>
+                  </div>
+                  <p className="text-secondary fs-5">
+                    To empower businesses with innovative, secure, and scalable digital solutions that automate operations, simplify workflows, 
+                    and enhance productivity, driving true digital transformation for every client.
+                  </p>
                 </div>
-                <h2 className="text-3xl font-bold text-brand-dark">Our Mission</h2>
-              </div>
-              <p className="text-gray-700 leading-relaxed text-lg">
-                To empower businesses with innovative, secure, and scalable digital solutions that automate operations, simplify workflows, 
-                and enhance productivity, driving true digital transformation for every client.
-              </p>
-            </div>
-          </Reveal>
+            </Reveal>
+          </div>
 
-          <Reveal delay={300}>
-            <div className="bg-gray-50 rounded-2xl p-10 border-t-4 border-brand-dark shadow-sm hover:shadow-md transition-shadow h-full">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="bg-brand-dark text-white p-3 rounded-full">
-                  <Eye size={32} />
+          <div className="col-12 col-md-6">
+            <Reveal delay={300}>
+                <div className="bg-white rounded-4 p-5 border-top border-4 border-dark shadow-sm h-100">
+                  <div className="d-flex align-items-center gap-3 mb-4">
+                    <div className="bg-brand-dark text-white p-2 rounded-circle">
+                      <Eye size={32} />
+                    </div>
+                    <h2 className="h2 fw-bold text-brand-dark mb-0">Our Vision</h2>
+                  </div>
+                  <p className="text-secondary fs-5">
+                    To be a trusted global technology partner for small and medium enterprises by providing 360° digital innovation from cloud to automation, 
+                    enabling organizations to thrive in the digital era.
+                  </p>
                 </div>
-                <h2 className="text-3xl font-bold text-brand-dark">Our Vision</h2>
-              </div>
-              <p className="text-gray-700 leading-relaxed text-lg">
-                To be a trusted global technology partner for small and medium enterprises by providing 360° digital innovation from cloud to automation, 
-                enabling organizations to thrive in the digital era.
-              </p>
-            </div>
-          </Reveal>
+            </Reveal>
+          </div>
         </section>
 
         {/* Core Values */}
-        <section>
+        <section className="mb-5 py-4">
           <Reveal>
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-brand-dark">Core Values</h2>
-              <div className="w-16 h-1 bg-brand-accent mx-auto mt-4 rounded-full"></div>
+            <div className="text-center mb-5">
+              <h2 className="h2 fw-bold text-brand-dark">Core Values</h2>
+              <div className="bg-brand-accent mx-auto mt-3 rounded-pill" style={{ width: '60px', height: '4px' }}></div>
             </div>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+          <div className="row g-4 justify-content-center">
             {CORE_VALUES.map((value, idx) => (
-              <Reveal key={idx} delay={idx * 100}>
-                <div className="bg-white p-6 rounded-xl shadow border border-gray-100 text-center hover:border-brand-accent transition-colors h-full">
-                  <h3 className="text-xl font-bold text-brand-primary mb-3">{value.title}</h3>
-                  <p className="text-gray-600 text-sm">{value.desc}</p>
-                </div>
-              </Reveal>
+              <div className="col-12 col-md-6 col-lg-4 col-xl-2.4" key={idx}>
+                  <Reveal delay={idx * 100}>
+                    <div className="bg-white p-4 rounded-4 shadow-sm border border-light text-center h-100 hover-text-accent transition-all">
+                      <h3 className="h5 fw-bold text-brand-primary mb-3">{value.title}</h3>
+                      <p className="text-secondary small mb-0">{value.desc}</p>
+                    </div>
+                  </Reveal>
+              </div>
             ))}
           </div>
         </section>
 
         {/* Founder */}
         <Reveal>
-          <section className="bg-brand-dark text-white rounded-3xl p-8 md:p-12 overflow-hidden relative">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-brand-primary rounded-full filter blur-[80px] opacity-40"></div>
-            <div className="relative z-10 flex flex-col md:flex-row items-center gap-12">
+          <section className="bg-brand-dark text-white rounded-4 p-4 p-md-5 position-relative overflow-hidden">
+            <div className="position-absolute top-0 end-0 bg-primary opacity-25 rounded-circle" style={{ width: '300px', height: '300px', filter: 'blur(80px)' }}></div>
+            <div className="position-relative z-1 d-flex flex-column flex-md-row align-items-center gap-5">
                <div className="flex-shrink-0">
-                 <div className="w-48 h-48 bg-gray-200 rounded-full flex items-center justify-center border-4 border-brand-accent overflow-hidden">
-                    <User size={80} className="text-gray-400" />
-                    {/* Replace with actual image if available */}
+                 <div className="bg-secondary bg-opacity-25 rounded-circle d-flex align-items-center justify-content-center border border-4 border-info overflow-hidden" style={{ width: '180px', height: '180px' }}>
+                    <User size={80} className="text-light opacity-50" />
                  </div>
                </div>
-               <div className="text-center md:text-left">
-                 <h2 className="text-3xl font-bold mb-2">{CONTACT_INFO.founder}</h2>
-                 <p className="text-brand-accent font-semibold text-xl mb-6">Founder</p>
-                 <div className="space-y-2 text-gray-300">
-                    <p>Email: {CONTACT_INFO.email}</p>
-                    <p>Phone: {CONTACT_INFO.phone}</p>
+               <div className="text-center text-md-start">
+                 <h2 className="h2 fw-bold mb-1">{CONTACT_INFO.founder}</h2>
+                 <p className="text-brand-accent fw-bold fs-5 mb-4">Founder</p>
+                 <div className="text-light opacity-75">
+                    <p className="mb-1">Email: {CONTACT_INFO.email}</p>
+                    <p className="mb-0">Phone: {CONTACT_INFO.phone}</p>
                  </div>
                </div>
             </div>

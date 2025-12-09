@@ -7,43 +7,43 @@ const CaseStudies: React.FC = () => {
   return (
     <div>
       {/* Header */}
-      <div className="bg-brand-dark py-16 text-center text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
-        <div className="container mx-auto px-4 relative z-10">
+      <div className="bg-brand-dark py-5 text-center text-white position-relative overflow-hidden">
+        <div className="hero-bg-pattern"></div>
+        <div className="container position-relative z-1 py-4">
           <Reveal>
-            <h1 className="text-4xl font-extrabold mb-4">Case Studies</h1>
+            <h1 className="display-4 fw-bold mb-3">Case Studies</h1>
           </Reveal>
           <Reveal delay={200}>
-            <p className="text-xl text-blue-200">Real World Success Stories</p>
+            <p className="lead text-blue-200">Real World Success Stories</p>
           </Reveal>
         </div>
       </div>
 
-      <div className="min-h-[60vh] bg-gray-50 flex flex-col items-center justify-center text-center px-4 py-16">
+      <div className="bg-brand-light min-vh-50 d-flex flex-column align-items-center justify-content-center text-center p-4 py-5">
         <Reveal>
-          <div className="bg-white p-10 md:p-14 rounded-3xl shadow-xl max-w-3xl border border-gray-100 mx-auto">
-             <div className="relative mb-8 inline-block">
-               <div className="w-24 h-24 bg-brand-light rounded-full flex items-center justify-center mx-auto text-brand-primary animate-pulse">
-                 <Construction size={48} />
+          <div className="bg-white p-5 rounded-5 shadow-lg mx-auto border border-light" style={{ maxWidth: '800px' }}>
+             <div className="position-relative mb-4 d-inline-block">
+               <div className="bg-light rounded-circle d-flex align-items-center justify-content-center mx-auto text-brand-primary" style={{ width: '96px', height: '96px' }}>
+                 <Construction size={48} className="animate-pulse" />
                </div>
-               <div className="absolute -bottom-2 -right-2 bg-brand-accent text-white p-2 rounded-full border-4 border-white">
+               <div className="position-absolute bottom-0 end-0 bg-brand-accent text-white p-2 rounded-circle border border-4 border-white">
                  <Clock size={20} />
                </div>
              </div>
              
-             <h2 className="text-3xl md:text-4xl font-extrabold text-brand-dark mb-4">Site Under Development</h2>
-             <div className="w-20 h-1 bg-brand-accent mx-auto rounded-full mb-6"></div>
+             <h2 className="h2 fw-bold text-brand-dark mb-3">Site Under Development</h2>
+             <div className="bg-brand-accent mx-auto rounded-pill mb-4" style={{ width: '80px', height: '4px' }}></div>
              
-             <p className="text-gray-600 text-lg mb-8 max-w-lg mx-auto leading-relaxed">
+             <p className="text-secondary fs-5 mb-5 mx-auto lh-base" style={{ maxWidth: '500px' }}>
                We are currently curating detailed case studies to showcase our digital transformation success stories. 
                This section will be available soon with in-depth analysis of how we help businesses grow.
              </p>
              
-             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-               <Link to="/" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold py-3 px-8 rounded-full transition-colors">
+             <div className="d-flex flex-column flex-sm-row gap-3 justify-content-center align-items-center">
+               <Link to="/" className="btn btn-light rounded-pill px-4 py-3 fw-bold d-flex align-items-center gap-2">
                  <ArrowLeft size={18} /> Return Home
                </Link>
-               <Link to="/contact" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-accent hover:bg-sky-600 text-white font-bold py-3 px-8 rounded-full transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+               <Link to="/contact" className="btn btn-brand-accent rounded-pill px-4 py-3 fw-bold shadow hover-translate-up">
                  Contact Us for Portfolio
                </Link>
              </div>
