@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, Phone, Mail as MailIcon, Linkedin, Facebook, Instagram, Youtube, Home, MapPin, Hexagon } from 'lucide-react';
+import { Menu, X, ChevronDown, Phone, Mail as MailIcon, Linkedin, Facebook, Instagram, Youtube, Home, MapPin, ArrowUp } from 'lucide-react';
 import { CONTACT_INFO, SOLUTIONS_DATA, SERVICES_DATA } from '../constants';
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -28,11 +28,17 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     setActiveDropdown(activeDropdown === name ? null : name);
   };
 
+  const isServicesActive = location.pathname.startsWith('/services');
+  const isSolutionsActive = location.pathname.startsWith('/solutions');
+
   const Logo: React.FC = () => (
-    <div className="d-flex align-items-center gap-2">
-      <div className="bg-white p-1 rounded-2 d-flex align-items-center justify-center text-brand-primary shadow-sm">
-        <Hexagon size={32} strokeWidth={2} fill="#F0F9FF" />
-      </div>
+    <div className="d-flex align-items-center justify-content-center bg-white rounded-2 p-1 shadow-sm" style={{ height: '54px', width: '54px' }}>
+      <img 
+        src="https://technovation360-my.sharepoint.com/:i:/g/personal/kirtan_bhuta_technovation360_in/IQATEdC90mnpTphR6uNS_EMXASZrUbKovZHod_qjTYBD0yQ?e=ijOrtB&download=1" 
+        alt="TechNovation360" 
+        className="img-fluid"
+        style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain' }}
+      />
     </div>
   );
 
@@ -40,26 +46,24 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     <div className="d-flex flex-column min-h-screen bg-brand-light">
       {/* Floating Header */}
       <header 
-        className={`fixed-top transition-all duration-500 ${isScrolled ? 'py-3' : 'py-0'}`}
+        className="fixed-top py-3 transition-all duration-500"
         style={{ zIndex: 1050 }}
       >
-        <div className={`container-fluid px-0 transition-all duration-500`}>
-            <div className={`mx-auto transition-all ${isScrolled 
-                ? 'bg-brand-dark bg-opacity-75 backdrop-blur border border-white border-opacity-10 rounded-pill shadow-lg px-4' 
-                : 'gradient-bg shadow w-100 px-3'}`}
-                style={{ maxWidth: isScrolled ? '1400px' : '100%' }}
+        <div className="container transition-all duration-500">
+            <div className={`mx-auto border border-white border-opacity-10 rounded-4 shadow-lg px-3 transition-all duration-300`}
+                 style={{ background: 'linear-gradient(90deg, #021024 0%, #004e92 100%)' }}
             >
-                <div className="d-flex align-items-center justify-content-between" style={{ height: isScrolled ? '70px' : '96px' }}>
+                <div className="d-flex align-items-center justify-content-between" style={{ height: '70px' }}>
                     
-                    {/* Desktop Left Nav */}
+                    {/* Desktop Nav (Left) */}
                     <nav className="d-none d-lg-flex align-items-center justify-content-end flex-grow-1 pe-4 gap-3">
                         <div className="position-relative nav-item-group">
-                            <Link to="/solutions" className="nav-link-custom">
+                            <NavLink to="/solutions" className={`nav-link-custom ${isSolutionsActive ? 'nav-active' : ''}`}>
                                 Solutions <ChevronDown size={14} />
-                            </Link>
+                            </NavLink>
                             <div className="dropdown-menu-custom">
                                 {SOLUTIONS_DATA.map((item) => (
-                                    <NavLink key={item.slug} to={`/solutions#${item.slug}`} className="dropdown-item px-3 py-2 text-secondary hover-text-accent">
+                                    <NavLink key={item.slug} to={`/solutions/${item.slug}`} className="dropdown-item">
                                         {item.title}
                                     </NavLink>
                                 ))}
@@ -67,34 +71,33 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                         </div>
 
                         <div className="position-relative nav-item-group">
-                             <span className="nav-link-custom cursor-pointer">
+                             <span className={`nav-link-custom cursor-pointer ${isServicesActive ? 'nav-active' : ''}`}>
                                 Services <ChevronDown size={14} />
                             </span>
                              <div className="dropdown-menu-custom">
                                 {SERVICES_DATA.map((item) => (
-                                    <NavLink key={item.slug} to={`/services/${item.slug}`} className="dropdown-item px-3 py-2 text-secondary hover-text-accent">
+                                    <NavLink key={item.slug} to={`/services/${item.slug}`} className="dropdown-item">
                                         {item.title}
                                     </NavLink>
                                 ))}
                             </div>
                         </div>
-                        <NavLink to="/case-studies" className={({isActive}) => `nav-link-custom ${isActive ? 'text-brand-accent' : ''}`}>
+                        <NavLink to="/case-studies" className={({isActive}) => `nav-link-custom ${isActive ? 'nav-active' : ''}`}>
                             Case Studies
                         </NavLink>
                     </nav>
 
                     {/* Logo Center */}
-                    <Link to="/" className="d-flex flex-column align-items-center text-decoration-none px-3">
+                    <Link to="/" className="d-flex align-items-center text-decoration-none">
                         <Logo />
-                        {!isScrolled && <small className="text-white text-uppercase mt-1" style={{ fontSize: '0.6rem', opacity: 0.8, letterSpacing: '1px' }}>Digitally Transforming Businesses</small>}
                     </Link>
 
-                     {/* Desktop Right Nav */}
-                     <nav className="d-none d-lg-flex align-items-center justify-content-start flex-grow-1 ps-4 gap-3">
-                        <NavLink to="/who-are-we" className={({isActive}) => `nav-link-custom ${isActive ? 'text-brand-accent' : ''}`}>
+                    {/* Desktop Nav (Right) */}
+                    <nav className="d-none d-lg-flex align-items-center justify-content-start flex-grow-1 ps-4 gap-3">
+                        <NavLink to="/who-are-we" className={({isActive}) => `nav-link-custom ${isActive ? 'nav-active' : ''}`}>
                             Who Are We
                         </NavLink>
-                        <NavLink to="/why-choose-us" className={({isActive}) => `nav-link-custom ${isActive ? 'text-brand-accent' : ''}`}>
+                        <NavLink to="/why-choose-us" className={({isActive}) => `nav-link-custom ${isActive ? 'nav-active' : ''}`}>
                             Why Choose Us
                         </NavLink>
                         <NavLink to="/contact" className="btn btn-light text-brand-primary fw-bold rounded-pill px-4 py-2 ms-2 shadow-sm">
@@ -114,40 +117,40 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
         {/* Mobile Menu */}
         <div className={`
-             position-absolute top-100 start-0 end-0 mx-3 mt-2 rounded-4 overflow-hidden mobile-menu border border-white border-opacity-10 shadow-lg
+             position-absolute start-0 end-0 mx-3 mt-2 rounded-4 overflow-hidden mobile-menu border border-white border-opacity-10 shadow-lg
              ${isMobileMenuOpen ? 'd-block' : 'd-none'}
-        `} style={{ transition: 'all 0.3s' }}>
+        `} style={{ top: '100%', transition: 'all 0.3s', background: 'linear-gradient(90deg, #021024 0%, #004e92 100%)' }}>
             <div className="py-3 px-2" style={{ maxHeight: '70vh', overflowY: 'auto' }}>
-                <button onClick={() => toggleDropdown('solutions')} className="btn text-white w-100 text-start d-flex justify-content-between align-items-center py-3 border-bottom border-secondary border-opacity-25">
+                <button onClick={() => toggleDropdown('solutions')} className="btn text-white w-100 text-start d-flex justify-content-between align-items-center py-3 border-bottom border-secondary border-opacity-25 hover-bg-white-10">
                      Solutions <ChevronDown size={16} />
                 </button>
                 {activeDropdown === 'solutions' && (
                     <div className="bg-dark bg-opacity-25 py-2">
                         {SOLUTIONS_DATA.map(item => (
-                             <NavLink key={item.slug} to={`/solutions#${item.slug}`} className="d-block text-white text-decoration-none py-2 px-4 fs-6 opacity-75">
+                             <NavLink key={item.slug} to={`/solutions/${item.slug}`} className="d-block text-white text-decoration-none py-2 px-4 fs-6 opacity-75 hover-opacity-100">
                                 {item.title}
                             </NavLink>
                         ))}
                     </div>
                 )}
 
-                <button onClick={() => toggleDropdown('services')} className="btn text-white w-100 text-start d-flex justify-content-between align-items-center py-3 border-bottom border-secondary border-opacity-25">
+                <button onClick={() => toggleDropdown('services')} className="btn text-white w-100 text-start d-flex justify-content-between align-items-center py-3 border-bottom border-secondary border-opacity-25 hover-bg-white-10">
                      Services <ChevronDown size={16} />
                 </button>
                  {activeDropdown === 'services' && (
                     <div className="bg-dark bg-opacity-25 py-2">
                         {SERVICES_DATA.map(item => (
-                             <NavLink key={item.slug} to={`/services/${item.slug}`} className="d-block text-white text-decoration-none py-2 px-4 fs-6 opacity-75">
+                             <NavLink key={item.slug} to={`/services/${item.slug}`} className="d-block text-white text-decoration-none py-2 px-4 fs-6 opacity-75 hover-opacity-100">
                                 {item.title}
                             </NavLink>
                         ))}
                     </div>
                 )}
                 
-                <NavLink to="/case-studies" className="d-block text-white text-decoration-none py-3 px-3 border-bottom border-secondary border-opacity-25">Case Studies</NavLink>
-                <NavLink to="/who-are-we" className="d-block text-white text-decoration-none py-3 px-3 border-bottom border-secondary border-opacity-25">Who Are We</NavLink>
-                <NavLink to="/why-choose-us" className="d-block text-white text-decoration-none py-3 px-3 border-bottom border-secondary border-opacity-25">Why Choose Us</NavLink>
-                <NavLink to="/contact" className="d-block text-white text-decoration-none py-3 px-3">Contact Us</NavLink>
+                <NavLink to="/case-studies" className="d-block text-white text-decoration-none py-3 px-3 border-bottom border-secondary border-opacity-25 hover-bg-white-10">Case Studies</NavLink>
+                <NavLink to="/who-are-we" className="d-block text-white text-decoration-none py-3 px-3 border-bottom border-secondary border-opacity-25 hover-bg-white-10">Who Are We</NavLink>
+                <NavLink to="/why-choose-us" className="d-block text-white text-decoration-none py-3 px-3 border-bottom border-secondary border-opacity-25 hover-bg-white-10">Why Choose Us</NavLink>
+                <NavLink to="/contact" className="d-block text-white text-decoration-none py-3 px-3 hover-bg-white-10">Contact Us</NavLink>
             </div>
         </div>
       </header>
@@ -165,10 +168,29 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       <footer className="bg-brand-dark text-white pt-5 pb-4 border-top border-4 border-info">
         <div className="container">
           <div className="row g-4 mb-4">
+            
+            {/* Swapped Column 1: Quick Links (Previously TechNovation360) */}
+            <div className="col-12 col-md-6 col-lg-3">
+                <h5 className="fw-bold mb-3 border-start border-4 border-info ps-2">Quick Links</h5>
+                <ul className="list-unstyled d-flex flex-column gap-2">
+                    <li><Link to="/" className="footer-link">Home</Link></li>
+                    <li><Link to="/who-are-we" className="footer-link">Who Are We</Link></li>
+                    <li><Link to="/case-studies" className="footer-link">Case Studies</Link></li>
+                    <li><Link to="/solutions/cloud-solutions" className="footer-link">Cloud Solutions</Link></li>
+                    <li><Link to="/why-choose-us" className="footer-link">Why Choose Us</Link></li>
+                    <li><Link to="/contact" className="footer-link">Contact Us</Link></li>
+                </ul>
+            </div>
+
+            {/* Swapped Column 2: TechNovation360 (Previously Quick Links) */}
             <div className="col-12 col-md-6 col-lg-3">
               <div className="d-flex align-items-center gap-3 mb-3">
-                 <div className="bg-white p-1 rounded-2 d-flex align-items-center justify-center text-brand-primary">
-                    <Hexagon size={24} strokeWidth={2} fill="#F0F9FF" />
+                 <div className="bg-white p-1 rounded-2 d-flex align-items-center justify-content-center shadow-sm">
+                    <img 
+                        src="https://technovation360-my.sharepoint.com/:i:/g/personal/kirtan_bhuta_technovation360_in/IQATEdC90mnpTphR6uNS_EMXASZrUbKovZHod_qjTYBD0yQ?e=ijOrtB&download=1" 
+                        alt="TN360" 
+                        style={{ maxHeight: '24px', width: 'auto' }}
+                    />
                  </div>
                  <span className="fw-bold fs-5">TechNovation360</span>
               </div>
@@ -184,24 +206,10 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             </div>
 
             <div className="col-12 col-md-6 col-lg-3">
-                <h5 className="fw-bold mb-3 border-start border-4 border-info ps-2">Quick Links</h5>
-                <ul className="list-unstyled d-flex flex-column gap-2">
-                    <li><Link to="/" className="footer-link">Home</Link></li>
-                    <li><Link to="/who-are-we" className="footer-link">Who Are We</Link></li>
-                    <li><Link to="/case-studies" className="footer-link">Case Studies</Link></li>
-                    <li><Link to="/solutions#cloud-solutions" className="footer-link">Cloud Solutions</Link></li>
-                    <li><Link to="/why-choose-us" className="footer-link">Why Choose Us</Link></li>
-                    <li><Link to="/contact" className="footer-link">Contact Us</Link></li>
-                </ul>
-            </div>
-
-            <div className="col-12 col-md-6 col-lg-3">
                 <h5 className="fw-bold mb-3 border-start border-4 border-info ps-2">Our Services</h5>
                 <ul className="list-unstyled d-flex flex-column gap-2">
                     <li><Link to="/services/operation-digitalization" className="footer-link">Operation Digitalization</Link></li>
-                    <li><Link to="/services/strategy-roadmapping" className="footer-link">Technology Strategy</Link></li>
-                    <li><Link to="/services/digital-transformation" className="footer-link">Digital Transformation</Link></li>
-                    <li><Link to="/services/grc" className="footer-link">IT GRC</Link></li>
+                    <li><Link to="/services/technology-grc" className="footer-link">Technology GRC</Link></li>
                     <li><Link to="/services/bcdr" className="footer-link">BC/DR</Link></li>
                 </ul>
             </div>
@@ -231,16 +239,29 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         </div>
       </footer>
       
-      {/* Floating Home Button */}
-      <Link 
-        to="/" 
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        className={`position-fixed bottom-0 end-0 m-4 btn btn-brand-accent rounded-circle p-3 shadow-lg ${showHomeBtn ? 'd-block' : 'd-none'}`}
+      {/* Floating Buttons Group */}
+      <div 
+        className={`position-fixed bottom-0 end-0 m-4 d-flex flex-column gap-2 ${showHomeBtn ? 'd-flex' : 'd-none'}`}
         style={{ zIndex: 1040 }}
-        aria-label="Back to Home"
       >
-        <Home size={24} />
-      </Link>
+        <button
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="btn rounded-circle p-3 shadow-lg hover-translate-up text-white"
+            style={{ backgroundColor: '#6f6f6f', borderColor: '#6f6f6f' }}
+            aria-label="Scroll to Top"
+        >
+            <ArrowUp size={24} />
+        </button>
+
+        <Link 
+            to="/" 
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="btn btn-brand-accent rounded-circle p-3 shadow-lg hover-translate-up"
+            aria-label="Back to Home"
+        >
+            <Home size={24} />
+        </Link>
+      </div>
     </div>
   );
 };

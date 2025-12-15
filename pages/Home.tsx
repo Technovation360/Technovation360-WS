@@ -7,17 +7,31 @@ import Reveal from '../components/Reveal';
 
 const Home: React.FC = () => {
   const itemCount = SOLUTIONS_DATA.length;
-  const radius = 336; 
+  // Increased radius for wider cards
+  const radius = 420; 
   const angleStep = 360 / itemCount;
 
   return (
     <>
       {/* Hero Section */}
-      <section className="position-relative gradient-bg text-white overflow-hidden">
-        <div className="hero-bg-pattern"></div>
+      {/* Added style to shift content up visually by adjusting padding or using transform */}
+      <section className="position-relative text-white overflow-hidden d-flex align-items-center" style={{ minHeight: '85vh', paddingBottom: '10vh' }}>
+        {/* Background Image & Overlay */}
+        <div className="position-absolute top-0 start-0 w-100 h-100 z-0 overflow-hidden">
+            <img 
+                src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=2072" 
+                alt="Digital Transformation World" 
+                className="w-100 h-100 object-cover animate-hero-bg"
+            />
+            {/* Dark Overlay for Text Readability */}
+            <div className="position-absolute top-0 start-0 w-100 h-100" style={{ background: 'linear-gradient(135deg, rgba(2, 16, 36, 0.95) 0%, rgba(0, 86, 179, 0.7) 100%)' }}></div>
+        </div>
+
+        <div className="hero-bg-pattern opacity-10"></div>
+        
         <div className="container position-relative z-1 pt-5 pb-5">
           <div className="row align-items-center g-5 py-lg-5">
-            <div className="col-12 col-lg-6">
+            <div className="col-12 col-lg-7">
               <div className="d-flex flex-column gap-3">
                 <Reveal width="fit-content">
                     <div className="d-inline-block bg-brand-accent bg-opacity-25 border border-brand-accent border-opacity-50 rounded-pill px-3 py-1 small fw-bold text-brand-accent backdrop-blur">
@@ -40,14 +54,14 @@ const Home: React.FC = () => {
                     </p>
                 </Reveal>
                 <Reveal delay={600}>
-                    <div className="d-flex flex-wrap gap-3 mt-3">
-                        <Link to="/contact" className="btn btn-brand-accent rounded-pill px-4 py-3 shadow hover-translate-up">
+                    <div className="d-flex flex-wrap align-items-center gap-2 mt-3">
+                        <Link to="/contact" className="btn btn-brand-accent rounded-pill px-4 py-2 shadow hover-translate-up fw-bold">
                             Request Consultation
                         </Link>
-                        <Link to="/solutions" className="btn btn-outline-white rounded-pill px-4 py-3">
+                        <Link to="/solutions" className="btn btn-outline-white rounded-pill px-4 py-2 fw-bold">
                             Explore Solutions
                         </Link>
-                         <Link to="/services/operation-digitalization" className="btn btn-outline-white rounded-pill px-4 py-3">
+                         <Link to="/services/operation-digitalization" className="btn btn-outline-white rounded-pill px-4 py-2 fw-bold">
                             Explore Services
                         </Link>
                     </div>
@@ -55,7 +69,7 @@ const Home: React.FC = () => {
               </div>
             </div>
             
-            <div className="col-12 col-lg-6 d-none d-lg-block position-relative">
+            <div className="col-12 col-lg-5 d-none d-lg-block position-relative">
                <Reveal delay={500} variant="zoom-in">
                  <div className="position-relative z-1 mx-auto" style={{ width: '350px', height: '250px' }}>
                     <iframe 
@@ -106,7 +120,7 @@ const Home: React.FC = () => {
                         <Icon size={100} color="#e5e7eb" />
                       </div>
 
-                      <Link to={`/solutions#${solution.slug}`} className="d-flex flex-column h-100 text-decoration-none text-start position-relative z-1">
+                      <Link to={`/solutions/${solution.slug}`} className="d-flex flex-column h-100 text-decoration-none text-start position-relative z-1">
                         <div className="bg-white rounded-3 shadow-sm d-flex align-items-center justify-content-center text-brand-primary mb-2" style={{ width: '32px', height: '32px' }}>
                           <Icon size={18} />
                         </div>

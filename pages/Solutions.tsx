@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { SOLUTIONS_DATA, ICON_MAP } from '../constants';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
@@ -9,24 +9,8 @@ const Solutions: React.FC = () => {
   const { hash } = useLocation();
 
   useEffect(() => {
-    if (hash) {
-      const element = document.getElementById(hash.replace('#', ''));
-      if (element) {
-        setTimeout(() => {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      }
-    } else {
-      window.scrollTo(0, 0);
-    }
-  }, [hash]);
-
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div>
@@ -52,13 +36,13 @@ const Solutions: React.FC = () => {
                 const Icon = ICON_MAP[item.iconName] || ArrowRight;
                 return (
                   <div className="col-6 col-md-4 col-lg-3" key={item.slug}>
-                      <button
-                        onClick={() => scrollToSection(item.slug)}
-                        className="btn btn-outline-light w-100 h-100 p-4 rounded-4 d-flex flex-column align-items-center gap-2 hover-bg-brand-accent transition-all border-opacity-25"
+                      <Link
+                        to={`/solutions/${item.slug}`}
+                        className="btn btn-outline-light w-100 h-100 p-4 rounded-4 d-flex flex-column align-items-center gap-2 hover-bg-brand-accent transition-all border-opacity-25 text-decoration-none"
                       >
                         <Icon size={24} className="text-brand-accent mb-1" />
                         <span className="fw-semibold small">{item.title}</span>
-                      </button>
+                      </Link>
                   </div>
                 );
               })}
@@ -74,7 +58,7 @@ const Solutions: React.FC = () => {
           const isEven = idx % 2 === 0;
           
           return (
-            <div key={item.slug} id={item.slug} className={`py-5 border-bottom border-light ${isEven ? 'bg-white' : 'bg-brand-light'}`}>
+            <div key={item.slug} className={`py-5 border-bottom border-light ${isEven ? 'bg-white' : 'bg-brand-light'}`}>
               <div className="container py-4">
                 <div className={`row g-5 align-items-center ${!isEven ? 'flex-lg-row-reverse' : ''}`}>
                   
@@ -108,6 +92,12 @@ const Solutions: React.FC = () => {
                             </div>
                             ))}
                         </div>
+                        </Reveal>
+
+                        <Reveal delay={300}>
+                            <Link to={`/solutions/${item.slug}`} className="btn btn-outline-primary rounded-pill px-4 py-2 mt-3 fw-bold align-self-start">
+                                Learn More <ArrowRight size={16} className="ms-1" />
+                            </Link>
                         </Reveal>
                     </div>
                   </div>

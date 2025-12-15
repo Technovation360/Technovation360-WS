@@ -2,6 +2,7 @@
 body {
   font-family: 'Inter', sans-serif;
   background-color: #F0F9FF; /* brand-light */
+  overflow-x: hidden; /* Prevent horizontal scrollbars */
 }
 
 /* Brand Colors */
@@ -19,27 +20,38 @@ body {
   --brand-light-rgb: 240, 249, 255;
 }
 
+/* 
+   Background Utilities 
+   Removed --bs-bg-opacity: 1 to allow override by Bootstrap opacity utilities.
+*/
 .bg-brand-dark { 
-    --bs-bg-opacity: 1;
-    background-color: rgba(var(--brand-dark-rgb), var(--bs-bg-opacity)) !important; 
+    background-color: rgba(var(--brand-dark-rgb), var(--bs-bg-opacity, 1)) !important; 
 }
 .bg-brand-primary { 
-    --bs-bg-opacity: 1;
-    background-color: rgba(var(--brand-primary-rgb), var(--bs-bg-opacity)) !important; 
+    background-color: rgba(var(--brand-primary-rgb), var(--bs-bg-opacity, 1)) !important; 
 }
 .bg-brand-accent { 
-    --bs-bg-opacity: 1;
-    background-color: rgba(var(--brand-accent-rgb), var(--bs-bg-opacity)) !important; 
+    background-color: rgba(var(--brand-accent-rgb), var(--bs-bg-opacity, 1)) !important; 
 }
 .bg-brand-light { 
-    --bs-bg-opacity: 1;
-    background-color: rgba(var(--brand-light-rgb), var(--bs-bg-opacity)) !important; 
+    background-color: rgba(var(--brand-light-rgb), var(--bs-bg-opacity, 1)) !important; 
 }
 
+/* Text Utilities */
 .text-brand-dark { color: var(--brand-dark) !important; }
 .text-brand-primary { color: var(--brand-primary) !important; }
 .text-brand-accent { color: var(--brand-accent) !important; }
 .text-brand-light { color: var(--brand-light) !important; }
+
+/* 
+   Border Utilities 
+*/
+.border-brand-dark { border-color: rgba(var(--brand-dark-rgb), var(--bs-border-opacity, 1)) !important; }
+.border-brand-primary { border-color: rgba(var(--brand-primary-rgb), var(--bs-border-opacity, 1)) !important; }
+.border-brand-accent { border-color: rgba(var(--brand-accent-rgb), var(--bs-border-opacity, 1)) !important; }
+.border-brand-light { border-color: rgba(var(--brand-light-rgb), var(--bs-border-opacity, 1)) !important; 
+}
+
 
 /* Darker secondary text for better contrast */
 .text-secondary-dark { color: #4b5563 !important; }
@@ -83,45 +95,133 @@ body {
 .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important; }
 .backdrop-blur { backdrop-filter: blur(8px); }
 
-/* Navigation */
+/* Navigation Styles */
 .nav-link-custom {
   color: white;
   text-transform: uppercase;
   font-size: 0.85rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.05em;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.75rem;
   text-decoration: none;
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 4px;
-  transition: color 0.2s;
+  transition: color 0.3s ease;
+  position: relative;
+  z-index: 1;
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
-.nav-link-custom:hover, .nav-link-custom.active {
+
+/* Nav Link Underline Animation */
+.nav-link-custom::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 2px !important;
+  background-color: var(--brand-accent);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+  z-index: -1;
+  border-radius: 2px;
+  top: auto !important;
+}
+
+.nav-link-custom:hover::after,
+.nav-link-custom.nav-active::after,
+.nav-item-group:hover .nav-link-custom::after {
+  transform: scaleX(1);
+}
+
+.nav-link-custom:hover,
+.nav-link-custom.nav-active,
+.nav-item-group:hover .nav-link-custom {
   color: var(--brand-accent);
 }
+
+/* Dropdown Menu Styles */
 .dropdown-menu-custom {
     display: none;
     position: absolute;
     top: 100%;
-    right: 0;
-    width: 18rem;
+    left: 0; /* Aligned left to expand to the right */
+    min-width: 260px; /* Wider for better readability */
     background: white;
     border-top: 4px solid var(--brand-accent);
-    border-radius: 0.75rem;
-    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    border-radius: 0.5rem; 
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
     z-index: 1000;
-    padding: 0.5rem 0;
+    padding: 0.5rem;
+    margin-top: 10px; /* Gap handled by pseudo-element below */
 }
+
+/* Invisible bridge to prevent menu closing when moving cursor from link to menu */
+.dropdown-menu-custom::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 0;
+    width: 100%;
+    height: 15px;
+    background: transparent;
+}
+
+.dropdown-menu-custom .dropdown-item {
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 2px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #4b5563; /* text-gray-600 */
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+    display: block;
+    text-decoration: none;
+    background: transparent;
+}
+
+.dropdown-menu-custom .dropdown-item:hover,
+.dropdown-menu-custom .dropdown-item:focus,
+.dropdown-menu-custom .dropdown-item.active {
+    background-color: var(--brand-light); 
+    color: var(--brand-accent);
+    transform: translateX(4px);
+    border-left-color: var(--brand-accent);
+}
+
+/* Ensure container handles hover state for visibility */
+.nav-item-group {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
 .nav-item-group:hover .dropdown-menu-custom {
     display: block;
-    animation: fadeIn 0.3s ease;
+    animation: fadeInLeft 0.2s ease-out forwards;
 }
 
 /* Mobile Menu */
 .mobile-menu {
-    background-color: rgba(2, 16, 36, 0.95);
+    /* Background handled in component style for gradient consistency */
     backdrop-filter: blur(10px);
+}
+
+.hover-bg-white-10:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.hover-opacity-100:hover {
+    opacity: 1 !important;
 }
 
 /* 3D Slider CSS */
@@ -133,7 +233,7 @@ body {
 }
 .slider-rotator {
   position: relative;
-  width: 180px;
+  width: 260px;
   height: 240px;
   margin: 0 auto;
   transform-style: preserve-3d;
@@ -157,7 +257,17 @@ body {
   from { transform: rotateY(0deg); }
   to { transform: rotateY(-360deg); }
 }
+
+/* Animation Keyframes */
 @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInCentered {
+    from { opacity: 0; transform: translate(-50%, 10px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+}
+@keyframes fadeInLeft {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
@@ -234,4 +344,15 @@ body {
     opacity: 0.1;
     background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
     pointer-events: none;
+}
+
+/* Hero Background Animation */
+@keyframes kenBurns {
+  0% { transform: scale(1) translate(0, 0); }
+  100% { transform: scale(1.15) translate(-2%, -1%); }
+}
+
+.animate-hero-bg {
+  animation: kenBurns 20s ease-in-out infinite alternate;
+  will-change: transform;
 }

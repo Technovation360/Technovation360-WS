@@ -9,7 +9,7 @@ export const CONTACT_INFO = {
   phone: "+91 7710009140",
   email: "info@technovation360.in",
   website: "www.technovation360.in",
-  address: "Mumbai, India"
+  address: "C/702, Bldg No. 57, Om Shree Ganesh Chhaya CHS, Tilak Nagar, Chembur, Mumbai-400089"
 };
 
 export const CORE_VALUES = [
@@ -153,37 +153,28 @@ export const SERVICES_DATA = [
   {
     slug: "operation-digitalization",
     title: "Operation Digitalization",
-    description: "Analyzing current business processes to identify improvement areas and recommending digital solutions to simplify, automate, and enhance daily operations.",
+    description: "A comprehensive approach combining Operation Digitalization, Digital Transformation, and Innovation. We analyze current processes to identify improvement areas, implement digital solutions to simplify workflows, and drive innovation through future-ready technologies.",
     iconName: "Zap",
-    features: ["Process Analysis", "Automation Strategy", "Digital Workflow Implementation"]
+    features: [
+      "Process Analysis & Automation Strategy",
+      "Digital Workflow Implementation",
+      "Legacy System Modernization",
+      "Innovation Workshops & Tech Adoption",
+      "Operational Efficiency Enhancement"
+    ]
   },
   {
-    slug: "security-compliance",
-    title: "Security & Compliance Assessment",
-    description: "Reviewing your entire technology landscape to identify security weaknesses, policy gaps, and compliance risks that could impact your business.",
-    iconName: "FileCheck",
-    features: ["Vulnerability Scanning", "Policy Review", "Regulatory Compliance Checks"]
-  },
-  {
-    slug: "strategy-roadmapping",
-    title: "Technology Strategy & Roadmapping",
-    description: "Aligning technology investments with business goals through a clear, structured roadmap that maximizes value and reduces complexity.",
-    iconName: "Map",
-    features: ["IT Budget Planning", "Growth Strategy", "Technology Lifecycle Management"]
-  },
-  {
-    slug: "digital-transformation",
-    title: "Digital Transformation & Innovation",
-    description: "Modernizing core processes and implementing smart, future-ready technologies that enhance efficiency and accelerate innovation.",
-    iconName: "Lightbulb",
-    features: ["Legacy Modernization", "Innovation Workshops", "New Tech Adoption"]
-  },
-  {
-    slug: "grc",
-    title: "IT Governance, Risk & Compliance (GRC)",
-    description: "Establishing robust controls, policies, and governance frameworks to minimize IT risks and strengthen operational integrity.",
-    iconName: "Gavel",
-    features: ["Risk Management Frameworks", "IT Governance Policy", "Audit Preparation"]
+    slug: "technology-grc",
+    title: "Technology Governance, Risk and Compliance",
+    description: "Aligning technology investments with business goals through Technology Strategy & Roadmapping, IT Governance, Risk & Compliance, and Cybersecurity & Threat Mitigation. We provide robust frameworks to manage risks proactively.",
+    iconName: "ShieldCheck",
+    features: [
+      "Technology Strategy & Roadmapping",
+      "IT Governance & Risk Management",
+      "Regulatory Compliance & Audit Prep",
+      "Cybersecurity & Threat Mitigation",
+      "Security Architecture Design"
+    ]
   },
   {
     slug: "bcdr",
@@ -191,13 +182,6 @@ export const SERVICES_DATA = [
     description: "Building resilient continuity strategies that guarantee seamless operations and rapid data restoration during outages.",
     iconName: "RefreshCw",
     features: ["BCP Planning", "Disaster Recovery Drills", "Resilience Architecture"]
-  },
-  {
-    slug: "threat-mitigation",
-    title: "Cybersecurity & Threat Mitigation",
-    description: "Enhancing security posture with proactive defense mechanisms and modern architectures that safeguard critical systems.",
-    iconName: "AlertTriangle",
-    features: ["Threat Hunting", "Incident Response", "Security Architecture Design"]
   }
 ];
 
